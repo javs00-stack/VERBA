@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free SEO keyword generator tool to help you find the best keywords for your content marketing strategy">
+    <meta name="keywords" content="SEO, keyword generator, keyword research, content marketing, SEO tools">
+    <meta name="author" content="SEO Tools">
+    <meta name="robots" content="index, follow">
+    <title>SEO Keyword Generator Tool | Free Keyword Research Tool</title>
+    <link rel="canonical" href="https://yourdomain.com/seo-keyword-generator">
+    <style>
+        :root {
+            --primary: #4a6bff;
+            --secondary: #6c757d;
+            --success: #28a745;
+            --info: #17a2b8;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --white: #ffffff;
+            --gray: #6c757d;
+            --gray-light: #e9ecef;
+            --font-sans: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-mono: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary), #3a56d4);
+            color: var(--white);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .main {
+            padding: 40px 0;
+        }
+
+        .tool-container {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .tool-title {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: var(--dark);
+            background-color: var(--white);
+            border: 1px solid var(--gray-light);
+            border-radius: 4px;
+            transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(74, 107, 255, 0.25);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent;
+            padding: 12px 24px;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            color: var(--white);
+            background-color: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            background-color: #3a56d4;
+            border-color: #344fc1;
+        }
+
+        .btn-block {
+            display: block;
+            width: 100%;
+        }
+
+        .results-container {
+            margin-top: 30px;
+        }
+
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .results-title {
+            font-size: 1.25rem;
+            color: var(--dark);
+        }
+
+        .copy-btn {
+            background-color: var(--gray-light);
+            color: var(--dark);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .copy-btn:hover {
+            background-color: #d1d7dc;
+        }
+
+        .keyword-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .keyword-item {
+            background-color: var(--light);
+            padding: 10px 15px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .keyword-text {
+            font-weight: 500;
+        }
+
+        .keyword-volume {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .keyword-metrics {
+            margin-top: 30px;
+        }
+
+        .metrics-title {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .metric-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .ad-container {
+            background-color: var(--gray-light);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            text-align: center;
+            min-height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ad-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--gray);
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 40px 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--white);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(74, 107, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s ease-in-out infinite;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                width: 100%;
+                margin-top: 15px;
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 0 0 10px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 15px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .keyword-list {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SEO enhancements */
+        .breadcrumb {
+            padding: 10px 0;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .breadcrumb a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            margin: 0 5px;
+        }
+
+        .schema-markup {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Schema.org markup for SEO -->
+    <script type="application/ld+json" class="schema-markup">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "SEO Keyword Generator Tool",
+        "description": "Free SEO keyword generator tool to help you find the best keywords for your content marketing strategy",
+        "url": "https://yourdomain.com/seo-keyword-generator",
+        "applicationCategory": "SEO Tool",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
+
+    <header>
+        <div class="container header-container">
+            <a href="/" class="logo">SEO<span>Tools</span></a>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/tools">Tools</a></li>
+                    <li><a href="/blog">Blog</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>SEO Keyword Generator Tool</h1>
+            <p>Discover high-performing keywords to boost your search rankings and drive more organic traffic to your website</p>
+        </div>
+    </section>
+
+    <div class="breadcrumb container">
+        <a href="/">Home</a> <span>/</span> <a href="/tools">Tools</a> <span>/</span> <span>Keyword Generator</span>
+    </div>
+
+    <main class="main">
+        <div class="container">
+            <!-- Top Ad Unit -->
+            <div class="ad-container">
+                <span class="ad-label">Advertisement</span>
+                <!-- Google AdSense Ad Unit -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+                     crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="tool-container">
+                <h1 class="tool-title">Keyword Generator</h1>
+                
+                <div class="form-group">
+                    <label for="seedKeyword" class="form-label">Seed Keyword or Topic</label>
+                    <input type="text" id="seedKeyword" class="form-control" placeholder="e.g., digital marketing, healthy recipes">
+                </div>
+                
+                <div class="form-group">
+                    <label for="language" class="form-label">Language</label>
+                    <select id="language" class="form-control">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                        <option value="de">German</option>
+                        <option value="it">Italian</option>
+                        <option value="pt">Portuguese</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Keyword Options</label>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+                        <div>
+                            <input type="checkbox" id="longTail" checked>
+                            <label for="longTail">Long-tail keywords</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="questions" checked>
+                            <label for="questions">Question keywords</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="local" checked>
+                            <label for="local">Local keywords</label>
+                        </div>
+                        <div>
+                            <input type="checkbox" id="branded" checked>
+                            <label for="branded">Branded keywords</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="generateBtn" class="btn btn-primary btn-block">Generate Keywords</button>
+                
+                <div class="results-container" id="resultsContainer" style="display: none;">
+                    <div class="results-header">
+                        <h2 class="results-title">Generated Keywords</h2>
+                        <button class="copy-btn" id="copyBtn">Copy All</button>
+                    </div>
+                    
+                    <div class="keyword-list" id="keywordList"></div>
+                    
+                    <div class="keyword-metrics">
+                        <h3 class="metrics-title">Keyword Metrics</h3>
+                        <div class="metrics-grid">
+                            <div class="metric-card">
+                                <div class="metric-value" id="totalKeywords">0</div>
+                                <div class="metric-label">Total Keywords</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="avgLength">0</div>
+                                <div class="metric-label">Avg. Length</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="avgVolume">0</div>
+                                <div class="metric-label">Avg. Volume</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-value" id="avgDifficulty">0</div>
+                                <div class="metric-label">Avg. Difficulty</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Middle Ad Unit -->
+            <div class="ad-container">
+                <span class="ad-label">Advertisement</span>
+                <!-- Google AdSense Ad Unit -->
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX"
+                     crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                     data-ad-slot="XXXXXXXXXX"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="tool-container">
+                <h2 class="tool-title">Keyword Optimization Tips</h2>
+                <div class="form-group">
+                    <label for="contentInput" class="form-label">Paste Your Content for Keyword Optimization</label>
+                    <textarea id="contentInput" class="form-control" placeholder="Paste your article or content here to analyze keyword usage..."></textarea>
+                </div>
+                <button id="optimizeBtn" class="btn btn-primary btn-block">Optimize Content</button>
+                
+                <div class="results-container" id="optimizationResults" style="display: none; margin-top: 30px;">
+                    <h3 class="results-title">Optimization Suggestions</h3>
+                    <div id="suggestionsList"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>SEO Tools</h3>
+                    <ul>
+                        <li><a href="/keyword-generator">Keyword Generator</a></li>
+                        <li><a href="/rank-checker">Rank Checker</a></li>
+                        <li><a href="/backlink-checker">Backlink Checker</a></li>
+                        <li><a href="/site-audit">Site Audit</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="/blog">Blog</a></li>
+                        <li><a href="/guides">SEO Guides</a></li>
+                        <li><a href="/case-studies">Case Studies</a></li>
+                        <li><a href="/glossary">SEO Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="/about">About Us</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/privacy">Privacy Policy</a></li>
+                        <li><a href="/terms">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; <span id="currentYear"></span> SEO Tools. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            document.getElementById('mainNav').classList.toggle('active');
+        });
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Sample keyword data for demonstration
+        const keywordDatabase = {
+            "digital marketing": [
+                { keyword: "digital marketing strategies", volume: 5400, difficulty: 72 },
+                { keyword: "digital marketing agency", volume: 9900, difficulty: 78 },
+                { keyword: "digital marketing courses", volume: 6600, difficulty: 65 },
+                { keyword: "digital marketing for small businesses", volume: 3200, difficulty: 58 },
+                { keyword: "what is digital marketing", volume: 8100, difficulty: 42 },
+                { keyword: "how to learn digital marketing", volume: 2900, difficulty: 51 },
+                { keyword: "best digital marketing tools", volume: 4400, difficulty: 67 },
+                { keyword: "digital marketing salary", volume: 8800, difficulty: 35 },
+                { keyword: "digital marketing vs traditional marketing", volume: 1800, difficulty: 55 },
+                { keyword: "digital marketing trends 2023", volume: 3600, difficulty: 62 }
+            ],
+            "healthy recipes": [
+                { keyword: "healthy breakfast recipes", volume: 13500, difficulty: 68 },
+                { keyword: "easy healthy dinner recipes", volume: 9900, difficulty: 72 },
+                { keyword: "healthy meal prep recipes", volume: 8100, difficulty: 65 },
+                { keyword: "quick healthy lunch recipes", volume: 5400, difficulty: 58 },
+                { keyword: "healthy vegetarian recipes", volume: 12100, difficulty: 63 },
+                { keyword: "healthy chicken recipes", volume: 8800, difficulty: 59 },
+                { keyword: "healthy smoothie recipes", volume: 14900, difficulty: 55 },
+                { keyword: "healthy dessert recipes", volume: 10100, difficulty: 61 },
+                { keyword: "healthy recipes for weight loss", volume: 18100, difficulty: 67 },
+                { keyword: "healthy snacks recipes", volume: 12100, difficulty: 54 }
+            ],
+            "web development": [
+                { keyword: "web development tutorials", volume: 8100, difficulty: 65 },
+                { keyword: "web development courses", volume: 9900, difficulty: 58 },
+                { keyword: "web development frameworks", volume: 5400, difficulty: 72 },
+                { keyword: "web development tools", volume: 4400, difficulty: 67 },
+                { keyword: "web development vs web design", volume: 2900, difficulty: 51 },
+                { keyword: "web development salary", volume: 8800, difficulty: 35 },
+                { keyword: "web development languages", volume: 6600, difficulty: 62 },
+                { keyword: "web development projects", volume: 3600, difficulty: 55 },
+                { keyword: "web development trends 2023", volume: 3200, difficulty: 58 },
+                { keyword: "how to become a web developer", volume: 7400, difficulty: 42 }
+            ]
+        };
+
+        // Generate related keywords
+        function generateRelatedKeywords(seed) {
+            const related = [];
+            
+            // Add question keywords
+            related.push(
+                `what is ${seed}`,
+                `how to ${seed}`,
+                `why ${seed} is important`,
+                `best ${seed} strategies`,
+                `${seed} for beginners`
+            );
+            
+            // Add long-tail keywords
+            related.push(
+                `${seed} tips and tricks`,
+                `${seed} best practices`,
+                `advanced ${seed} techniques`,
+                `${seed} for small businesses`,
+                `${seed} trends this year`
+            );
+            
+            // Add local keywords
+            related.push(
+                `${seed} near me`,
+                `${seed} in my area`,
+                `best ${seed} in [city]`,
+                `affordable ${seed} services`,
+                `${seed} companies nearby`
+            );
+            
+            // Add branded keywords
+            related.push(
+                `${seed} vs [competitor]`,
+                `[brand] ${seed} services`,
+                `compare ${seed} tools`,
+                `reviews of ${seed} platforms`,
+                `${seed} alternatives`
+            );
+            
+            return related;
+        }
+
+        // Generate random metrics for demo
+        function getRandomMetrics(keyword) {
+            const length = keyword.length;
+            const volume = Math.floor(Math.random() * 10000) + 1000;
+            const difficulty = Math.floor(Math.random() * 50) + 30;
+            return { length, volume, difficulty };
+        }
+
+        // Generate keywords
+        document.getElementById('generateBtn').addEventListener('click', function() {
+            const seedKeyword = document.getElementById('seedKeyword').value.trim().toLowerCase();
+            const language = document.getElementById('language').value;
+            const includeLongTail = document.getElementById('longTail').checked;
+            const includeQuestions = document.getElementById('questions').checked;
+            const includeLocal = document.getElementById('local').checked;
+            const includeBranded = document.getElementById('branded').checked;
+            
+            if (!seedKeyword) {
+                alert('Please enter a seed keyword or topic');
+                return;
+            }
+            
+            // Show loading state
+            this.innerHTML = '<span class="loading"></span> Generating...';
+            this.disabled = true;
+            
+            // Simulate API call with timeout
+            setTimeout(() => {
+                let keywords = [];
+                
+                // Get exact match keywords if available
+                if (keywordDatabase[seedKeyword]) {
+                    keywords = [...keywordDatabase[seedKeyword]];
+                } else {
+                    // Fallback for any keyword
+                    const baseKeywords = [
+                        `${seedKeyword} strategies`,
+                        `${seedKeyword} tips`,
+                        `best ${seedKeyword} tools`,
+                        `${seedKeyword} guide`,
+                        `${seedKeyword} for beginners`
+                    ];
+                    
+                    keywords = baseKeywords.map(kw => {
+                        const metrics = getRandomMetrics(kw);
+                        return {
+                            keyword: kw,
+                            volume: metrics.volume,
+                            difficulty: metrics.difficulty
+                        };
+                    });
+                }
+                
+                // Add related keywords based on options
+                if (includeLongTail || includeQuestions || includeLocal || includeBranded) {
+                    const related = generateRelatedKeywords(seedKeyword);
+                    
+                    related.forEach(kw => {
+                        // Filter by type
+                        if (includeQuestions && (kw.startsWith('what') || kw.startsWith('how') || kw.startsWith('why'))) {
+                            const metrics = getRandomMetrics(kw);
+                            keywords.push({
+                                keyword: kw,
+                                volume: metrics.volume,
+                                difficulty: metrics.difficulty
+                            });
+                        }
+                        else if (includeLongTail && kw.split(' ').length >= 4) {
+                            const metrics = getRandomMetrics(kw);
+                            keywords.push({
+                                keyword: kw,
+                                volume: metrics.volume,
+                                difficulty: metrics.difficulty
+                            });
+                        }
+                        else if (includeLocal && (kw.includes('near me') || kw.includes('in my area'))) {
+                            const metrics = getRandomMetrics(kw);
+                            keywords.push({
+                                keyword: kw,
+                                volume: metrics.volume,
+                                difficulty: metrics.difficulty
+                            });
+                        }
+                        else if (includeBranded && (kw.includes('vs') || kw.includes('reviews') || kw.includes('alternatives'))) {
+                            const metrics = getRandomMetrics(kw);
+                            keywords.push({
+                                keyword: kw,
+                                volume: metrics.volume,
+                                difficulty: metrics.difficulty
+                            });
+                        }
+                    });
+                }
+                
+                // Display results
+                displayKeywords(keywords);
+                
+                // Reset button
+                this.innerHTML = 'Generate Keywords';
+                this.disabled = false;
+            }, 1500);
+        });
+
+        // Display generated keywords
+        function displayKeywords(keywords) {
+            const keywordList = document.getElementById('keywordList');
+            keywordList.innerHTML = '';
+            
+            // Calculate metrics
+            let totalLength = 0;
+            let totalVolume = 0;
+            let totalDifficulty = 0;
+            
+            keywords.forEach(kw => {
+                const item = document.createElement('div');
+                item.className = 'keyword-item';
+                item.innerHTML = `
+                    <span class="keyword-text">${kw.keyword}</span>
+                    <span class="keyword-volume">${kw.volume.toLocaleString()}/mo</span>
+                `;
+                keywordList.appendChild(item);
+                
+                totalLength += kw.keyword.length;
+                totalVolume += kw.volume;
+                totalDifficulty += kw.difficulty;
+            });
+            
+            // Update metrics
+            document.getElementById('totalKeywords').textContent = keywords.length;
+            document.getElementById('avgLength').textContent = Math.round(totalLength / keywords.length);
+            document.getElementById('avgVolume').textContent = Math.round(totalVolume / keywords.length).toLocaleString();
+            document.getElementById('avgDifficulty').textContent = Math.round(totalDifficulty / keywords.length);
+            
+            // Show results container
+            document.getElementById('resultsContainer').style.display = 'block';
+            
+            // Scroll to results
+            document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Copy all keywords
+        document.getElementById('copyBtn').addEventListener('click', function() {
+            const keywords = Array.from(document.querySelectorAll('.keyword-text')).map(el => el.textContent);
+            const text = keywords.join('\n');
+            
+            navigator.clipboard.writeText(text).then(() => {
+                this.textContent = 'Copied!';
+                setTimeout(() => {
+                    this.textContent = 'Copy All';
+                }, 2000);
+            });
+        });
+
+        // Optimize content
+        document.getElementById('optimizeBtn').addEventListener('click', function() {
+            const content = document.getElementById('contentInput').value.trim();
+            
+            if (!content) {
+                alert('Please paste your content to analyze');
+                return;
+            }
+            
+            // Show loading state
+            this.innerHTML = '<span class="loading"></span> Analyzing...';
+            this.disabled = true;
+            
+            // Simulate analysis
+            setTimeout(() => {
+                // Generate optimization suggestions
+                const suggestions = [
+                    "Consider adding more long-tail keywords to target specific search queries",
+                    "Your content could benefit from more question-based keywords (what, how, why)",
+                    "Include local keywords to attract nearby customers (e.g., 'near me', 'in [city]')",
+                    "Add some branded keywords to compare with competitors",
+                    "The keyword density is good, but try to vary your keyword usage",
+                    "Include more action-oriented keywords (e.g., 'buy', 'learn', 'discover')"
+                ];
+                
+                // Display suggestions
+                const suggestionsList = document.getElementById('suggestionsList');
+                suggestionsList.innerHTML = '<ul style="list-style-type: none; padding-left: 0;">' + 
+                    suggestions.map(s => `<li style="padding: 10px 0; border-bottom: 1px solid #eee;">${s}</li>`).join('') + 
+                    '</ul>';
+                
+                // Show results
+                document.getElementById('optimizationResults').style.display = 'block';
+                
+                // Reset button
+                this.innerHTML = 'Optimize Content';
+                this.disabled = false;
+            }, 2000);
+        });
+
+        // Preload some keywords when page loads for demo
+        window.addEventListener('load', function() {
+            document.getElementById('seedKeyword').value = 'digital marketing';
+        });
+    </script>
+</body>
+</html>
